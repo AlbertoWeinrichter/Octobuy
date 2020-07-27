@@ -1,0 +1,7 @@
+auth-backend/venv
+auth-frontend/dist
+auth-frontend/node_modules
+auth-frontend/.nuxt
+.idea
+.envrc
+*.pyc

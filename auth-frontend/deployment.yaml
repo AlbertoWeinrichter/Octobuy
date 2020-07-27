@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: auth-frontend
+  labels:
+    app: auth-frontend
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-frontend
+  template:
+    metadata:
+      labels:
+        app: auth-frontend
+    spec:
+      containers:
+      - name: auth-frontend
+        image: auth-frontend:1
+        imagePullPolicy: Never
+
+
+
