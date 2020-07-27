@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# open /Applications/SourceTree.app/Contents/MacOS/SourceTree
+
 docker system prune --all
 minikube delete
 minikube start --memory 12000 --cpus 4
