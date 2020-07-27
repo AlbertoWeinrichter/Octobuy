@@ -12,8 +12,8 @@ class SNKRSBot:
         desired_caps = {
             "platformName": "Android",
             "browserName": "chrome",
-            "deviceName": "samsung_galaxy_s6_8.1"
-            # "app": "/Users/albertoweinrichter/Documents/WORK/PAST EMPLOYERS/PoliceProject/backend/mobile_module/Nike.apk",
+            "deviceName": "samsung_galaxy_s6_8.1",
+            "app": "/provision/Nike.apk",
         }
 
         self.driver = webdriver.Remote(os.environ["BAREMETAL_INSTANCE"], desired_caps)

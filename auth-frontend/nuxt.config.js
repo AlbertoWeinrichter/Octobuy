@@ -1,7 +1,7 @@
 export default {
   mode: 'universal',
   axios: {
-    baseURL: 'http://backend:5000',
+    baseURL: 'http://auth-backend:5000',
     browserBaseURL: 'http://localhost:5000',
   },
   head: {
