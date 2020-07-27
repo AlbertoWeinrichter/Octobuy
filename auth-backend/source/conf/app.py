@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
 import logging
+import subprocess
 import sys
 
-import subprocess
-from flask_cors import CORS
-
 from flask import Flask
-
+from flask_cors import CORS
 from source import models
 from source.API.auth import auth_blueprint
 from source.API.bot import bot_blueprint
 from source.API.user import user_blueprint
-from source.conf.extensions import bcrypt, jwt_security, db, migrate
+from source.conf.extensions import bcrypt, db, jwt_security, migrate
 
 app = Flask(__name__)
 
@@ -27,7 +25,7 @@ def create_app(config_object="source.conf.settings.DevelopmentConfig"):
     # TODO: Find a better way to deal with migrations on K8S
     # migrate_db()
 
-    @app.route('/')
+    @app.route("/")
     def healthcheck():
         return "Auth microservice"
 
@@ -58,10 +56,7 @@ def register_blueprints(app):
 def register_shellcontext(app):
     # Add models here
     def shell_context():
-        return {
-            "db": db,
-            "User": models.user.User
-        }
+        return {"db": db, "User": models.user.User}
 
     app.shell_context_processor(shell_context)
 

@@ -1,8 +1,7 @@
 import os
 
-from flask import Flask
 from celery import Celery
-
+from flask import Flask
 from source.conf import celery_config
 
 
@@ -21,7 +20,7 @@ def make_celery(app):
 
 app = Flask(__name__)
 
-app.config['CELERY_BROKER_URL'] = os.environ.get('CELERY_BROKER_URL')
-app.config['CELERY_RESULT_URL'] = os.environ.get('CELERY_RESULT_URL')
+app.config["CELERY_BROKER_URL"] = os.environ.get("CELERY_BROKER_URL")
+app.config["CELERY_RESULT_URL"] = os.environ.get("CELERY_RESULT_URL")
 
 celery = make_celery(app)

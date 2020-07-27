@@ -1,6 +1,5 @@
 import logging
 
-
 from source.bot_scripts.SNKRS import SNKRSBot
 from source.conf.celery import celery
 

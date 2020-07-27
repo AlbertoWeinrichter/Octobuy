@@ -36,4 +36,3 @@ spec:
           value: "postgres"
         - name: BAREMETAL_INSTANCE
           value: "http://3.10.22.115:4444/wd/hub"
-

@@ -1,9 +1,5 @@
 from flask import make_response
-from flask_jwt_extended import (
-    verify_jwt_in_request,
-    get_jwt_claims
-)
-
+from flask_jwt_extended import get_jwt_claims, verify_jwt_in_request
 from source.conf.extensions import jwt_security
 
 
@@ -24,9 +20,7 @@ def role_required(role=None):
             if role in claims or role == "admin":
                 return f(*args, **kwargs)
             else:
-                response = {
-                    'message': "You don't have enough permissions",
-                }
+                response = {"message": "You don't have enough permissions"}
                 return make_response(response), 200
 
         return decorated_function

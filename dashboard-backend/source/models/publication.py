@@ -1,12 +1,11 @@
-from typing import List, Optional
 from datetime import date
+from typing import List, Optional
 
-from sqlalchemy import inspect, ForeignKey
+from pydantic import BaseModel
+from source.conf.database import Column, Model, SurrogatePK, db
+from sqlalchemy import ForeignKey, inspect
 from sqlalchemy.dialects import postgresql
 from sqlalchemy.orm import relationship
-
-from source.conf.database import (Model, Column, db, SurrogatePK)
-from pydantic import BaseModel
 
 
 class PublicationSchema(BaseModel):
@@ -46,34 +45,25 @@ class Publication(SurrogatePK, Model):
     cover_image = Column(db.String(256), nullable=True)
     social_image = Column(db.String(256), nullable=True)
     body_html = Column(db.Text(), nullable=True)
-    summary = Column('elements', postgresql.ARRAY(db.String))
+    summary = Column("elements", postgresql.ARRAY(db.String))
 
-    tags = relationship('Tag', secondary='publication_tags')
-
-
+    tags = relationship("Tag", secondary="publication_tags")
 
     def __init__(self, **kwargs):
         db.Model.__init__(self, **kwargs)
 
     def _asdict(self):
-        return {c.key: getattr(self, c.key)
-                for c in inspect(self).mapper.column_attrs}
+        return {c.key: getattr(self, c.key) for c in inspect(self).mapper.column_attrs}
 
 
 class Tag(SurrogatePK, Model):
-    __tablename__ = 'tag'
+    __tablename__ = "tag"
     id = Column(db.Integer, primary_key=True)
     name = Column(db.String)
-    publications = relationship(Publication, secondary='publication_tags')
+    publications = relationship(Publication, secondary="publication_tags")
 
 
 class PublicationTags(SurrogatePK, Model):
-    __tablename__ = 'publication_tags'
-    publication_id = Column(
-        db.Integer,
-        ForeignKey('publication.id'),
-        primary_key=True)
-    tag_id = Column(
-        db.Integer,
-        ForeignKey('tag.id'),
-        primary_key=True)
+    __tablename__ = "publication_tags"
+    publication_id = Column(db.Integer, ForeignKey("publication.id"), primary_key=True)
+    tag_id = Column(db.Integer, ForeignKey("tag.id"), primary_key=True)

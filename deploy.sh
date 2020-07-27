@@ -36,6 +36,22 @@ kubectl create --filename auth-backend/service.yaml
 #kubectl delete --filename auth-frontend/service.yaml
 #kubectl apply --filename auth-frontend/service.yaml
 
+### DASHBOARD BACKEND ###
+#docker image rm auth-backend:1
+#docker build --tag auth-backend:1 --file auth-backend/Dockerfile .
+#kubectl delete --filename auth-backend/deployment.yaml
+#kubectl create --filename auth-backend/deployment.yaml
+#kubectl delete --filename auth-backend/service.yaml
+#kubectl create --filename auth-backend/service.yaml
+
+#### DASHBOARD FRONTEND ###
+#docker image rm auth-frontend:1
+#docker build --tag auth-frontend:1 --file auth-frontend/Dockerfile .
+#kubectl delete --filename auth-frontend/deployment.yaml
+#kubectl apply --filename auth-frontend/deployment.yaml
+#kubectl delete --filename auth-frontend/service.yaml
+#kubectl apply --filename auth-frontend/service.yaml
+
 ### CELERY ###
 kubectl delete --filename worker/controller.yaml
 kubectl apply --filename worker/controller.yaml

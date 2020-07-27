@@ -2,15 +2,15 @@ import datetime
 import datetime as dt
 import os
 from typing import List
-import sqlalchemy_jsonfield
 
 import jwt
+import sqlalchemy_jsonfield
 from flask_jwt_extended import create_access_token
 from flask_login import UserMixin
-from source.conf.extensions import bcrypt
 from passlib.context import CryptContext
 from pydantic import BaseModel, Json
-from source.conf.database import (Column, Model, SurrogatePK, db)
+from source.conf.database import Column, Model, SurrogatePK, db
+from source.conf.extensions import bcrypt
 
 
 class UserSchema(BaseModel):
@@ -38,10 +38,7 @@ class User(UserMixin, SurrogatePK, Model):
     created_at = Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
     roles = Column(db.ARRAY(db.String(256)))
     extra_info = db.Column(
-        sqlalchemy_jsonfield.JSONField(
-            enforce_unicode=False
-        ),
-        nullable=False
+        sqlalchemy_jsonfield.JSONField(enforce_unicode=False), nullable=False
     )
 
     def __init__(self, username, email, password=None, **kwargs):
@@ -66,14 +63,11 @@ class User(UserMixin, SurrogatePK, Model):
         :return: string
         """
         try:
-            payload = {
-                'roles': roles,
-                'user_id': user_id
-            }
+            payload = {"roles": roles, "user_id": user_id}
             token = create_access_token(
                 identity=payload,
                 # expires_delta=datetime.timedelta(seconds=30) TODO: change this to couple minutes
-                expires_delta = datetime.timedelta(days=30)
+                expires_delta=datetime.timedelta(days=30),
             )
             return token
         except Exception as e:
@@ -86,15 +80,11 @@ class User(UserMixin, SurrogatePK, Model):
         """
         try:
             payload = {
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(days=30),
-                'iat': datetime.datetime.utcnow(),
-                'identity': user_id
+                "exp": datetime.datetime.utcnow() + datetime.timedelta(days=30),
+                "iat": datetime.datetime.utcnow(),
+                "identity": user_id,
             }
-            return jwt.encode(
-                payload,
-                os.environ.get('SECRET_KEY'),
-                algorithm='HS256'
-            )
+            return jwt.encode(payload, os.environ.get("SECRET_KEY"), algorithm="HS256")
         except Exception as e:
             return e
 
@@ -107,18 +97,10 @@ def hash_password(password: str):
 
 
 def decode_access_token(token):
-    payload = jwt.decode(
-        token,
-        os.environ.get('SECRET_KEY'),
-        algorithm='HS256'
-    )
+    payload = jwt.decode(token, os.environ.get("SECRET_KEY"), algorithm="HS256")
     return payload
 
 
 def decode_refresh_token(token):
-    payload = jwt.decode(
-        token,
-        os.environ.get('SECRET_KEY'),
-        algorithm='HS256'
-    )
+    payload = jwt.decode(token, os.environ.get("SECRET_KEY"), algorithm="HS256")
     return payload

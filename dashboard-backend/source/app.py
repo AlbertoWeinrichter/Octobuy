@@ -4,10 +4,9 @@ import sys
 
 from flask import Flask
 from flask_cors import CORS
-
 from source import models
 from source.API.publication import publication_blueprint
-from source.conf.extensions import bcrypt, jwt_security, db, migrate
+from source.conf.extensions import bcrypt, db, jwt_security, migrate
 
 app = Flask(__name__)
 
@@ -20,7 +19,7 @@ def create_app(config_object="source.conf.settings.DevelopmentConfig"):
     register_shellcontext(app)
     configure_logger(app)
 
-    @app.route('/')
+    @app.route("/")
     def healthcheck():
         return "CMS microservice"
 
@@ -45,10 +44,7 @@ def register_blueprints(app):
 
 def register_shellcontext(app):
     def shell_context():
-        return {
-            "db": db,
-            "Publication": models.publication.Publication
-        }
+        return {"db": db, "Publication": models.publication.Publication}
 
     app.shell_context_processor(shell_context)
 

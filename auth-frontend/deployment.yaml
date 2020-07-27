@@ -20,6 +20,3 @@ spec:
       - name: auth-frontend
         image: auth-frontend:1
         imagePullPolicy: Never
-
-
-
