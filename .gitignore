@@ -5,3 +5,7 @@ auth-frontend/.nuxt
 .idea
 .envrc
 *.pyc
+.terraform
+baremetal/terraform.rfstate
+baremetal/terraform.rfstate.backup
+provision
