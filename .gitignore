@@ -6,6 +6,7 @@ auth-frontend/.nuxt
 .envrc
 *.pyc
 .terraform
+baremetal/fixture.tfvars
 baremetal/terraform.rfstate
 baremetal/terraform.rfstate.backup
 provision
