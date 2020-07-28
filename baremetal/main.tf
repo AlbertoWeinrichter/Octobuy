@@ -91,6 +91,15 @@ resource "aws_security_group" "octobuy_security_group" {
     protocol = "tcp"
   }
 
+  ingress {
+    cidr_blocks = [
+      "0.0.0.0/0"
+    ]
+    from_port = 4723
+    to_port = 4723
+    protocol = "tcp"
+  }
+
   egress {
     from_port = 0
     to_port = 0
@@ -125,7 +134,7 @@ resource "aws_s3_bucket" "baremetal" {
 
 resource "aws_s3_bucket_object" "file_upload" {
   bucket = "baremetal.bucket"
-  key    = "Nike.apk"
-  source = "${path.module}/provision/Nike.apk"
-  etag   = "${filemd5("${path.module}/provision/Nike.apk")}"
+  key    = "snkrs.apk"
+  source = "${path.module}/provision/snkrs.apk"
+  etag   = "${filemd5("${path.module}/provision/snkrs.apk")}"
 }

@@ -9,4 +9,4 @@ auth-frontend/.nuxt
 baremetal/fixture.tfvars
 baremetal/terraform.rfstate
 baremetal/terraform.rfstate.backup
-provision/Nike.apk
+provision/snkrs.apk

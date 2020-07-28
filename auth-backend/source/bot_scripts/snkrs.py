@@ -1,5 +1,6 @@
 from appium import webdriver
 from appium.webdriver.common.touch_action import TouchAction
+import time
 
 
 class SNKRSBot:
@@ -15,12 +16,12 @@ class SNKRSBot:
         }
 
         self.driver = webdriver.Remote("http://3.9.62.133:4444/wd/hub", desired_caps)
-        self.driver.install_app("/provision/snkrs.apk")
 
     def run(self):
-        self.driver.implicitly_wait(10)
-        el1 = self.driver.find_element_by_id("com.nike.omega:id/loginJoinNowButton")
-        el1.click()
+        self.driver.implicitly_wait(30)
+
+        time.sleep(5)
+        TouchAction(self.driver).tap(x=52, y=750).perform()
 
         el3 = self.driver.find_element_by_xpath(
             "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[1]/android.widget.EditText"

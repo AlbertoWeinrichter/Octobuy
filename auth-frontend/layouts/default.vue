@@ -1,6 +1,6 @@
 <template>
   <v-app >
-    <v-content class="content-margin">
+    <v-main class="content-margin">
       <v-container grid-list-xl fluid>
         <v-layout row wrap>
           <v-flex col-md-6 offset-md-3>
@@ -8,7 +8,7 @@
           </v-flex>
         </v-layout>
       </v-container>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
