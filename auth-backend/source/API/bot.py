@@ -1,6 +1,6 @@
 from flask import Blueprint, make_response
 
-# from source.services.permissions import role_required
+from source.services.permissions import role_required
 from flask.views import MethodView
 from source.tasks.android import snkrs
 
@@ -22,5 +22,5 @@ class BotViewAPI(MethodView):
 
 bot_view = BotViewAPI.as_view("bot_api")
 bot_blueprint.add_url_rule(
-    "/api/v1/bot/<product_id>", view_func=bot_view, methods=["POST"]
+    "/api/v1/user/bot/<product_id>", view_func=bot_view, methods=["POST"]
 )

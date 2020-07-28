@@ -22,7 +22,10 @@ def create_app(config_object="source.conf.settings.DevelopmentConfig"):
     register_shellcontext(app)
     configure_logger(app)
 
-    migrate_db()
+    # Creates a fucking infinite loop
+    # OF COURSE
+    # TODO: stop being an idiot
+    # migrate_db()
 
     @app.route("/")
     def healthcheck():

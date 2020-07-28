@@ -7,7 +7,7 @@ First, create baremetal instance:
     terraform apply -var-file="fixture.tfvars"
 
 
-will link to octobuy-app.com, SSH into the instance and:
+will link to an elastic IP (3.9.62.133), SSH into the instance and:
 
     ssh -i metal.pem ubuntu@3.9.62.133
 
@@ -21,7 +21,19 @@ will link to octobuy-app.com, SSH into the instance and:
     git clone https://github.com/AlbertoWeinrichter/Octobuy.git
     cd Octobuy/baremetal/provision
 
-
-    sudo curl -L "https://s3.eu-west-2.amazonaws.com/baremetal.bucket/Nike.apk" -o Nike.apk
     sudo curl -L "https://s3.eu-west-2.amazonaws.com/baremetal.bucket/snkrs.apk" -o snkrs.apk
     sudo docker-compose up -d
+
+
+
+### Solar System Exploration, 1950s – 1960s
+
+- [x] Add Terraform configuration for baremetal instance and .apk provision
+- [x] Kubernetize whole application
+- [x] Nuxt front end
+- [x] Redis result backend
+- [x] Authentication with JWT token
+- [ ] Add lambda scraper module for product listings
+- [ ] Automate Flask migrations
+- [ ] Make Android Emulator VNC scale
+- [ ] Websockets to follow task progress

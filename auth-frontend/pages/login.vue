@@ -32,10 +32,11 @@
                 </v-form>
               </v-card-text>
               <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn block color="primary" @click="login" :loading="loading"
-                >Login
+                <v-btn block color="primary" @click="login" :loading="loading">
+                  Login
                 </v-btn>
+
+                <v-spacer></v-spacer>
 
                 <nuxt-link to="/register">
                   <i>Don't have an account?</i>

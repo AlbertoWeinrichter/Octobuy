@@ -8,11 +8,22 @@ spec:
   - host: octobuy-app.local
     http:
       paths:
+      # AUTH MICROSERVICE
       - path: /
         backend:
           serviceName: auth-frontend
           servicePort: 3000
-      - path: /api/v1/
+      - path: /api/v1/user
         backend:
           serviceName: auth-backend
           servicePort: 5000
+
+      # DASHBOARD MICROSERVICE
+#      - path: /admin
+#          backend:
+#            serviceName: dashboard-frontend
+#            servicePort: 3000
+#      - path: /api/v1/admin
+#          backend:
+#            serviceName: dashboard-backend
+#            servicePort: 5000

@@ -33,7 +33,7 @@ class User(UserMixin, SurrogatePK, Model):
     __tablename__ = "users"
     username = Column(db.String(256), unique=True, nullable=False)
     email = Column(db.String(256), unique=True, nullable=False)
-    refresh_token = Column(db.LargeBinary(128), unique=True, nullable=False)
+    refresh_token = Column(db.LargeBinary(128), nullable=False)
     password = Column(db.LargeBinary(128), nullable=True)
     created_at = Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
     roles = Column(db.ARRAY(db.String(256)))
