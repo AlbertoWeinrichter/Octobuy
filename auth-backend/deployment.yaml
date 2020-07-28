@@ -21,6 +21,8 @@ spec:
         image: auth-backend:1
         imagePullPolicy: Never
         env:
+        - name: SECRET_KEY
+          value: "I'm a secret key"
         - name: CELERY_BROKER_URL
           value: amqp://guest:guest@rabbitmq:5672
         - name: CELERY_RESULT_URL

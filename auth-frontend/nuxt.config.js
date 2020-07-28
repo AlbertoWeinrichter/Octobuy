@@ -1,7 +1,8 @@
 export default {
   mode: 'universal',
   axios: {
-    baseURL: `${process.env.AUTH_BACKEND_SERVICE_HOST}:${process.env.AUTH_BACKEND_SERVICE_PORT}/api/v1`,
+    // baseURL: `${process.env.AUTH_BACKEND_SERVICE_HOST}:${process.env.AUTH_BACKEND_SERVICE_PORT}/api/v1`,
+    baseURL: 'http://octobuy-app.local/api/v1',
     browserBaseURL: 'http://octobuy-app.local/api/v1',
   },
   head: {

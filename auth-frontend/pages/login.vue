@@ -38,10 +38,13 @@
 
                 <v-spacer></v-spacer>
 
-                <nuxt-link to="/register">
-                  <i>Don't have an account?</i>
-                </nuxt-link>
               </v-card-actions>
+
+              <br>
+              <br>
+              <nuxt-link to="/register">
+                <i>Don't have an account?</i>
+              </nuxt-link>
             </v-card>
           </v-flex>
         </v-layout>

@@ -72,25 +72,15 @@
         this.status = "Buying";
         this.loading = true
         await this.$axios
-          .$post('/user/auth/login', this.login_form)
+          .$get('/user/bot/1')
           .then((response) => {
-            Cookie.set('accessToken', response.accessToken)
-            Cookie.set('refreshToken', response.refreshToken)
-
-            this.$store.dispatch('auth/SET_TOKENS', {
-              accessToken: response.accessToken,
-              refreshToken: response.refreshToken
-            })
-
-            this.$store.dispatch('auth/FETCH_USER')
-
-            this.$router.push('/')
+            console.log(response)
           })
           .catch((err) => {
             this.loading = false
             this.status = err
             console.log(err)
-            this.$toast.error('User does not exist.')
+            this.$toast.error('Bot failed for some reason')
           })
       }
     }

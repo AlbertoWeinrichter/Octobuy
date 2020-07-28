@@ -55,7 +55,7 @@ class LoginAPI(MethodView):
             ):
                 access_token = user.create_access_token(user.id, user.roles)
                 user_login_response = UserLoginSchema(
-                    accessToken=access_token, refreshToken=user.refresh_token
+                    accessToken=str(access_token), refreshToken=str(user.refresh_token)
                 )
 
                 return user_login_response.dict()
@@ -108,10 +108,35 @@ class LogoutAPI(MethodView):
             return response, 500
 
 
+class DebugAPI(MethodView):
+    def get(self):
+        try:
+            user = User(
+                username="apple_test",
+                email="test@appl.com",
+                password="Caramelo22",
+                roles=["member"],
+                extra_info={},
+                refresh_token=b"",
+            )
+
+            db.session.add(user)
+            db.session.commit()
+
+            response = {"message": "Successfully created test user"}
+            return response, 200
+
+        except Exception as e:
+            print(e)
+            response = {"message": "Some error occurred. Please try again."}
+            return response, 500
+
+
 registration_view = RegisterAPI.as_view("register_api")
 login_view = LoginAPI.as_view("login_api")
 logout_view = LogoutAPI.as_view("logout_api")
 refresh_view = RefreshAPI.as_view("refresh_api")
+debug_view = DebugAPI.as_view("debug_api")
 
 auth_blueprint.add_url_rule(
     "/api/v1/user/auth/register", view_func=registration_view, methods=["POST"]
@@ -127,4 +152,8 @@ auth_blueprint.add_url_rule(
 
 auth_blueprint.add_url_rule(
     "/api/v1/user/auth/logout", view_func=logout_view, methods=["GET"]
+)
+
+auth_blueprint.add_url_rule(
+    "/api/v1/user/auth/debug", view_func=debug_view, methods=["GET"]
 )
