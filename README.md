@@ -26,7 +26,7 @@ will link to an elastic IP (3.9.62.133), SSH into the instance and:
 
 
 
-### Solar System Exploration, 1950s – 1960s
+### TODO:
 
 - [x] Add Terraform configuration for baremetal instance and .apk provision
 - [x] Kubernetize whole application
