@@ -22,8 +22,7 @@ def create_app(config_object="source.conf.settings.DevelopmentConfig"):
     register_shellcontext(app)
     configure_logger(app)
 
-    # TODO: Find a better way to deal with migrations on K8S
-    # migrate_db()
+    migrate_db()
 
     @app.route("/")
     def healthcheck():

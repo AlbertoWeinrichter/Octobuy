@@ -13,18 +13,16 @@
                     width="120"
                     height="120"
                   />
-                  <h1 class="flex my-4 primary--text">Momentum</h1>
+                  <h1 class="flex my-4 primary--text">Octobuy</h1>
                 </div>
                 <v-form>
                   <v-text-field
-                    append-icon="person"
                     name="email"
                     label="Login"
                     type="text"
                     v-model="login_form.email"
                   ></v-text-field>
                   <v-text-field
-                    append-icon="lock"
                     name="password"
                     label="Password"
                     id="password"

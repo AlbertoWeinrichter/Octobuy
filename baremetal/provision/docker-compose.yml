@@ -1,7 +1,6 @@
 version: "2.2"
 
 services:
-  # Selenium hub
   selenium_hub:
     image: selenium/hub:3.14.0-curium
     ports:
@@ -10,7 +9,7 @@ services:
   samsung_galaxy_6:
     image: budtmo/docker-android-x86-8.1
     privileged: true
-    scale: 10
+    scale: 1
     depends_on:
       - selenium_hub
     ports:
@@ -22,4 +21,4 @@ services:
       - SELENIUM_HOST=selenium_hub
       - MOBILE_WEB_TEST=true
     volumes:
-    - ./provision/Nike.apk:/provision/Nike.apk
+    - ./provision:/provision

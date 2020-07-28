@@ -15,6 +15,8 @@ COPY ./auth-backend /app
 
 EXPOSE 5000
 
+# Add this so migrations work
+ENV PYTHONPATH=/app
 ENV FLASK_APP=autoapp.py
 
 CMD ["gunicorn", "-b", ":5000", "autoapp:app"]

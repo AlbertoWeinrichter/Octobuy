@@ -35,4 +35,4 @@ spec:
         - name: POSTGRES_HOST
           value: "postgres"
         - name: BAREMETAL_INSTANCE
-          value: "http://3.10.22.115:4444/wd/hub"
+          value: "http://3.9.62.133:4444/wd/hub"

@@ -21,7 +21,7 @@ resource "aws_vpc" "octobuy_vpc" {
 }
 
 resource "aws_eip" "octobuy_eip" {
-  instance = aws_instance.bare_metal.id
+  instance = aws_instance.baremetal.id
   vpc = true
 }
 
@@ -102,13 +102,17 @@ resource "aws_security_group" "octobuy_security_group" {
 }
 
 ### BAREMETAL INSTANCE ###
-resource "aws_instance" "bare_metal" {
+resource "aws_instance" "baremetal" {
   ami = "ami-00f6a0c18edb19300"
-  instance_type = "t2.micro"
+  instance_type = "c5n.metal"
   key_name = "metal"
   security_groups = [aws_security_group.octobuy_security_group.id]
   subnet_id = aws_subnet.octobuy_subnet.id
   tags = local.tags
+
+  root_block_device {
+      volume_size = 80
+  }
 }
 
 resource "aws_s3_bucket" "baremetal" {

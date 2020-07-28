@@ -13,9 +13,9 @@ export const actions = {
         refreshToken: cookies.refreshToken,
       })
 
-      await this.$axios.get('/user/me').then((res) => {
-        commit('auth/SET_USER', res.data.user)
-      })
+      // await this.$axios.get('/user/me').then((res) => {
+      //   commit('auth/SET_USER', res.data.user)
+      // })
     }
   },
 }

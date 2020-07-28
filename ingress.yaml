@@ -5,7 +5,7 @@ metadata:
   annotations:
 spec:
   rules:
-  - host: octobuy-app.com
+  - host: octobuy-app.local
     http:
       paths:
       - path: /

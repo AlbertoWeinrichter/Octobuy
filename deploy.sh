@@ -30,7 +30,11 @@ kubectl create --filename auth-backend/deployment.yaml
 kubectl delete --filename auth-backend/service.yaml
 kubectl create --filename auth-backend/service.yaml
 
-### AUTH FRONTEND ###
+### CELERY ###
+kubectl delete --filename worker/controller.yaml
+kubectl apply --filename worker/controller.yaml
+
+#### AUTH FRONTEND ###
 docker image rm auth-frontend:1 --force
 docker build --tag auth-frontend:1 --file auth-frontend/Dockerfile .
 kubectl delete --filename auth-frontend/deployment.yaml
@@ -40,32 +44,13 @@ kubectl apply --filename auth-frontend/service.yaml
 
 ### INGRESS ###
 kubectl apply --filename ingress.yaml
+sudo echo "$(minikube ip) octobuy-app.local" | sudo tee -a /etc/hosts
 
-### DASHBOARD BACKEND ###
-#docker image rm auth-backend:1 --force
-#docker build --tag auth-backend:1 --file auth-backend/Dockerfile .
-#kubectl delete --filename auth-backend/deployment.yaml
-#kubectl create --filename auth-backend/deployment.yaml
-#kubectl delete --filename auth-backend/service.yaml
-#kubectl create --filename auth-backend/service.yaml
-
-#### DASHBOARD FRONTEND ###
-#docker image rm auth-frontend:1 --force
-#docker build --tag auth-frontend:1 --file auth-frontend/Dockerfile .
-#kubectl delete --filename auth-frontend/deployment.yaml
-#kubectl apply --filename auth-frontend/deployment.yaml
-#kubectl delete --filename auth-frontend/service.yaml
-#kubectl apply --filename auth-frontend/service.yaml
-
-### CELERY ###
-kubectl delete --filename worker/controller.yaml
-kubectl apply --filename worker/controller.yaml
 
 
 
 # TODO:
 #kubectl port-forward deployment/auth-frontend 3000:3000
 #kubectl port-forward deployment/auth-backend 5000:5000
-#echo "$(minikube ip) octobuy-app.com" | sudo tee -a /etc/hosts
 
 # TODO: remove deletes and leave only applys

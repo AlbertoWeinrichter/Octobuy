@@ -29,7 +29,6 @@
 
                   <v-text-field
                     v-model="password"
-                    :append-icon="show ? 'visibility' : 'visibility_off'"
                     :rules="[passwordRules.required, passwordRules.min]"
                     :type="show ? 'text' : 'password'"
                     required
@@ -41,7 +40,6 @@
 
                   <v-text-field
                     v-model="confirmPassword"
-                    :append-icon="show1 ? 'visibility' : 'visibility_off'"
                     :rules="[
                       passwordRules.required,
                       passwordRules.min,
